@@ -1,0 +1,38 @@
+{
+  "name": "@axetroy/chatgpt",
+  "version": "0.1.0",
+  "description": "ChatGPT api for nodejs",
+  "author": "Axetroy <axetroy.dev@gmail.com>",
+  "license": "Anti-996",
+  "private": false,
+  "bin": "bin/chatgpt",
+  "files": [
+    "bin/chatgpt",
+    "lib/index.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "optionalDependencies": {
+    "@axetroy/chatgpt-darwin-amd64": "0.1.0",
+    "@axetroy/chatgpt-darwin-arm64": "0.1.0",
+    "@axetroy/chatgpt-linux-386": "0.1.0",
+    "@axetroy/chatgpt-linux-arm": "0.1.0",
+    "@axetroy/chatgpt-linux-arm64": "0.1.0",
+    "@axetroy/chatgpt-linux-amd64": "0.1.0",
+    "@axetroy/chatgpt-linux-mips": "0.1.0",
+    "@axetroy/chatgpt-linux-mipsel": "0.1.0",
+    "@axetroy/chatgpt-linux-mips64": "0.1.0",
+    "@axetroy/chatgpt-linux-mips64el": "0.1.0",
+    "@axetroy/chatgpt-freebsd-386": "0.1.0",
+    "@axetroy/chatgpt-freebsd-arm": "0.1.0",
+    "@axetroy/chatgpt-freebsd-arm64": "0.1.0",
+    "@axetroy/chatgpt-freebsd-amd64": "0.1.0",
+    "@axetroy/chatgpt-openbsd-386": "0.1.0",
+    "@axetroy/chatgpt-openbsd-arm": "0.1.0",
+    "@axetroy/chatgpt-openbsd-arm64": "0.1.0",
+    "@axetroy/chatgpt-openbsd-amd64": "0.1.0",
+    "@axetroy/chatgpt-windows-arm": "0.1.0",
+    "@axetroy/chatgpt-windows-arm64": "0.1.0",
+    "@axetroy/chatgpt-windows-amd64": "0.1.0"
+  }
+}

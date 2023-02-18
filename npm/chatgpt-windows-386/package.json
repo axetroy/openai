@@ -1,0 +1,15 @@
+{
+  "name": "@axetroy/chatgpt-windows-386",
+  "version": "0.1.0",
+  "description": "The Windows 32-bit binary for chatgpt",
+  "repository": "https://github.com/axetroy/chatgpt",
+  "license": "Anti-996 License",
+  "private": false,
+  "preferUnplugged": true,
+  "engines": {
+    "node": ">=12"
+  },
+  "files": ["chatgpt.exe"],
+  "os": ["win32"],
+  "cpu": ["ia32"]
+}

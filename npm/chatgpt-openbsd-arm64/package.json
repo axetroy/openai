@@ -1,0 +1,15 @@
+{
+  "name": "@axetroy/chatgpt-openbsd-arm64",
+  "version": "0.1.0",
+  "description": "The OpenBSD arm64 binary for chatgpt",
+  "repository": "https://github.com/axetroy/chatgpt",
+  "license": "Anti-996 License",
+  "private": false,
+  "preferUnplugged": true,
+  "engines": {
+    "node": ">=12"
+  },
+  "files": ["chatgpt"],
+  "os": ["openbsd"],
+  "cpu": ["arm64"]
+}

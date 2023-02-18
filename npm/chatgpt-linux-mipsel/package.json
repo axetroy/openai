@@ -1,0 +1,21 @@
+{
+  "name": "@axetroy/chatgpt-linux-mipsel",
+  "version": "1.0.0",
+  "description": "The Linux mipsel binary for chatgpt",
+  "repository": "https://github.com/axetroy/chatgpt",
+  "license": "Anti-996 License",
+  "private": false,
+  "preferUnplugged": true,
+  "engines": {
+    "node": ">=12"
+  },
+  "files": [
+    "chatgpt"
+  ],
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "mipsel"
+  ]
+}

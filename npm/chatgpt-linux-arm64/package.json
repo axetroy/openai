@@ -1,0 +1,15 @@
+{
+  "name": "@axetroy/chatgpt-linux-amd64",
+  "version": "0.1.0",
+  "description": "The Linux 64-Bit binary for chatgpt",
+  "repository": "https://github.com/axetroy/chatgpt",
+  "license": "Anti-996 License",
+  "private": false,
+  "preferUnplugged": true,
+  "engines": {
+    "node": ">=12"
+  },
+  "files": ["chatgpt"],
+  "os": ["linux"],
+  "cpu": ["x64"]
+}
