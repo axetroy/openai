@@ -1,12 +1,12 @@
 package main
 
 import (
-	"bufio"
 	"flag"
 	"fmt"
 	"os"
 	"strings"
 
+	"github.com/AlecAivazis/survey/v2"
 	"github.com/axetroy/openai"
 	"github.com/gookit/color"
 	"github.com/pkg/errors"
@@ -16,6 +16,8 @@ var (
 	version = "dev"
 	commit  = "none"
 	date    = "unknown"
+
+	green = color.FgGreen.Render
 )
 
 func checkExitCommand(question string) string {
@@ -85,17 +87,35 @@ func run() error {
 		os.Exit(1)
 	}
 
-	scanner := bufio.NewScanner(os.Stdin)
 	quit := false
 
 	for !quit {
-		fmt.Print("请输入你的问题(CTRL+C 退出): ")
+		answers := struct {
+			Question string // survey will match the question and field names
+		}{}
 
-		if !scanner.Scan() {
-			break
+		// the questions to ask
+		var qs = []*survey.Question{
+			{
+				Name:      "question",
+				Prompt:    &survey.Input{Message: "Enter your question"},
+				Validate:  survey.Required,
+				Transform: survey.Title,
+			},
 		}
 
-		question := scanner.Text()
+		// perform the questions
+		err := survey.Ask(qs, &answers)
+
+		if err != nil {
+			if err.Error() == "interrupt" {
+				break
+			}
+
+			return errors.WithStack(err)
+		}
+
+		question := answers.Question
 		questionParam := checkExitCommand(question)
 		switch questionParam {
 		case "quit":
@@ -118,6 +138,8 @@ func run() error {
 			if err != nil {
 				return errors.WithStack(err)
 			}
+
+			fmt.Println("")
 		}
 	}
 
