@@ -13,15 +13,10 @@ import (
 // docs: https://platform.openai.com/docs/api-reference/completions
 
 type CompletionParams struct {
-	Prompt      string  `json:"prompt"`
-	Model       string  `json:"model"`
-	Temperature float64 `json:"temperature"`
-	MaxTokens   int     `json:"max_tokens"`
-}
-
-type CompletionApiParams struct {
-	CompletionParams
-	Stream           bool                   `json:"stream"`
+	Prompt           *string                `json:"prompt,omitempty"`
+	Model            string                 `json:"model"`
+	Temperature      *float64               `json:"temperature,omitempty"`
+	MaxTokens        *int                   `json:"max_tokens,omitempty"`
 	TopP             *int                   `json:"top_p,omitempty"`
 	N                *int                   `json:"n,omitempty"`
 	Logprobs         *int                   `json:"logprobs,omitempty"`
@@ -34,6 +29,11 @@ type CompletionApiParams struct {
 	User             *string                `json:"user,omitempty"`
 }
 
+type CompletionApiParams struct {
+	CompletionParams
+	Stream bool `json:"stream"`
+}
+
 type CompletionChoice struct {
 	Text         string      `json:"text"`
 	Index        int         `json:"index"`
@@ -41,7 +41,7 @@ type CompletionChoice struct {
 	FinishReason interface{} `json:"finish_reason"`
 }
 
-type CompletionChunk struct {
+type CompletionResponse struct {
 	ID      string             `json:"id"`
 	Object  string             `json:"object"`
 	Created int                `json:"created"`
@@ -49,26 +49,21 @@ type CompletionChunk struct {
 	Model   string             `json:"model"`
 }
 
-func (c *Client) CompletionsStream(config CompletionParams, writer io.Writer) error {
+func (c *Client) CompletionsStream(params CompletionParams, writer io.Writer) error {
 	url := fmt.Sprintf("%s/v1/completions", API_DOMAIN)
 
-	params := CompletionApiParams{
-		CompletionParams: CompletionParams{
-			Prompt:      config.Prompt,
-			Model:       config.Model,
-			Temperature: config.Temperature,
-			MaxTokens:   config.MaxTokens,
-		},
-		Stream: true,
+	apiParams := CompletionApiParams{
+		CompletionParams: params,
+		Stream:           true,
 	}
 
-	body, err := json.Marshal(params)
+	body, err := json.Marshal(apiParams)
 
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
-	source, err := NewEventSource[CompletionChunk](url, "POST", http.Header{
+	source, err := NewEventSource[CompletionResponse](url, "POST", http.Header{
 		"Authorization": []string{"Bearer " + c.apiKey},
 		"Content-Type":  []string{"application/json"},
 	}, bytes.NewBuffer(body))

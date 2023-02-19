@@ -105,11 +105,14 @@ func run() error {
 		default:
 			client := openai.NewClient(apiKey)
 
+			temperature := 0.6
+			maxTokens := 2048
+
 			err := client.CompletionsStream(openai.CompletionParams{
-				Prompt:      question,
+				Prompt:      &question,
 				Model:       model,
-				Temperature: 0.6,
-				MaxTokens:   2048,
+				Temperature: &temperature,
+				MaxTokens:   &maxTokens,
 			}, os.Stdout)
 
 			if err != nil {

@@ -39,10 +39,10 @@ type ModelPermission struct {
 	IsBlocking         bool    `json:"is_blocking"`
 }
 
-func (c *Client) Models() ([]Model, error) {
+func (c *Client) Models() (*ModelResponse, error) {
 	url := fmt.Sprintf("%s/v1/models", API_DOMAIN)
 
-	source, err := NewEventSource[CompletionChunk](url, "GET", http.Header{
+	source, err := NewEventSource[any](url, "GET", http.Header{
 		"Authorization": []string{"Bearer " + c.apiKey},
 		"Content-Type":  []string{"application/json"},
 	}, nil)
@@ -65,13 +65,13 @@ func (c *Client) Models() ([]Model, error) {
 		return nil, errors.WithStack(err)
 	}
 
-	return data.Data, nil
+	return &data, nil
 }
 
 func (c *Client) Model(model string) (*Model, error) {
 	url := fmt.Sprintf("%s/v1/model/%s", API_DOMAIN, model)
 
-	source, err := NewEventSource[CompletionChunk](url, "GET", http.Header{
+	source, err := NewEventSource[any](url, "GET", http.Header{
 		"Authorization": []string{"Bearer " + c.apiKey},
 		"Content-Type":  []string{"application/json"},
 	}, nil)
