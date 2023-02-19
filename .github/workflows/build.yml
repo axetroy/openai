@@ -80,12 +80,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - name: Prepare npm package
-        run: node npm/prepare.js
+      - name: Prepare chatgpt npm package
+        run: node cmd/chatgpt/npm/prepare.js
         env:
           GIT_REF: ${{ github.ref }}
 
-      - name: Publish npm package
-        run: node npm/publish.js
+      - name: Publish chatgpt npm package
+        run: node cmd/chatgpt/npm/publish.js
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
