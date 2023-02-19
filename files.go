@@ -125,7 +125,6 @@ func (c *Client) FileContent(fileId string) ([]byte, error) {
 
 	source, err := NewEventSource[any](url, "GET", http.Header{
 		"Authorization": []string{"Bearer " + c.apiKey},
-		"Content-Type":  []string{"application/json"},
 	}, nil)
 
 	if err != nil {
