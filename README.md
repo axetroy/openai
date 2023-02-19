@@ -10,41 +10,15 @@
 
 open.ai 的 Golang 非官方 SDK 以及 chatGPT 的命令行工具
 
-### Usage
-
-```bash
-$ chatgpt --help
-```
-
 ### 安装
 
-1. Shell (Mac/Linux)
-
 ```bash
-curl -fsSL https://github.com/release-lab/install/raw/v1/install.sh | bash -s -- -r=axetroy/chatgpt
+go get -u github.com/axetroy/openai
 ```
 
-2. PowerShell (Windows):
+### 命令行工具
 
-```bash
-$r="axetroy/chatgpt";iwr https://github.com/release-lab/install/raw/v1/install.ps1 -useb | iex
-```
-
-3. [Github release page](https://github.com/axetroy/chatgpt/releases) (全平台支持))
-
-> 下载可执行文件，并且把它加入到`$PATH` 环境变量中
-
-4. 使用 [Golang](https://golang.org) 从源码中构建并安装 (全平台支持)
-
-```bash
-go install github.com/axetroy/chatgpt/cmd/chatgpt
-```
-
-5. 通过 npm 安装
-
-```sh
-npm install @axetroy/chatgpt -g
-```
+- [chatGPT](cmd/chatgpt/README.md)
 
 ### 测试
 

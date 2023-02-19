@@ -12,33 +12,13 @@ Open.ai's unofficial Golang SDK and chatGPT's command line tool
 
 ### Install
 
-1. Shell (Mac/Linux)
-
 ```bash
-curl -fsSL https://github.com/release-lab/install/raw/v1/install.sh | bash -s -- -r=axetroy/chatgpt
+go get -u github.com/axetroy/openai
 ```
 
-2. PowerShell (Windows):
+### CLI
 
-```bash
-$r="axetroy/chatgpt";iwr https://github.com/release-lab/install/raw/v1/install.ps1 -useb | iex
-```
-
-3. [Github release page](https://github.com/axetroy/chatgpt/releases) (All platforms)
-
-> download the executable file and put the executable file to `$PATH`
-
-4. Build and install from source using [Golang](https://golang.org) (All platforms)
-
-```bash
-go install github.com/axetroy/chatgpt/cmd/chatgpt
-```
-
-5. Install via npm
-
-```sh
-npm install @axetroy/chatgpt -g
-```
+- [chatGPT](cmd/chatgpt/README.md)
 
 ### Test
 
