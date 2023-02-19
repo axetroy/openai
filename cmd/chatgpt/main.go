@@ -16,8 +16,6 @@ var (
 	version = "dev"
 	commit  = "none"
 	date    = "unknown"
-
-	green = color.FgGreen.Render
 )
 
 func checkExitCommand(question string) string {

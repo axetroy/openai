@@ -22,11 +22,9 @@ func NewEventSource[T any](url string, method string, headers http.Header, body 
 		return nil, errors.WithStack(err)
 	}
 
-	if headers != nil {
-		for key, values := range headers {
-			for _, value := range values {
-				req.Header.Set(key, value)
-			}
+	for key, values := range headers {
+		for _, value := range values {
+			req.Header.Set(key, value)
 		}
 	}
 

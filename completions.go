@@ -89,7 +89,9 @@ func (c *Client) CompletionsStream(params CompletionParams, writer io.Writer) er
 			continue
 		}
 
-		writer.Write([]byte(chunk.Choices[0].Text))
+		if _, err = writer.Write([]byte(chunk.Choices[0].Text)); err != nil {
+			return errors.WithStack(err)
+		}
 	}
 
 	return nil
