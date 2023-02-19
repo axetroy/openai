@@ -1,10 +1,10 @@
 中文简体 | [English](README_en-US.md)
 
-[![Build Status](https://github.com/axetroy/chatgpt/workflows/ci/badge.svg)](https://github.com/axetroy/chatgpt/actions)
-[![Go Report Card](https://goreportcard.com/badge/github.com/axetroy/chatgpt)](https://goreportcard.com/report/github.com/axetroy/chatgpt)
-![Latest Version](https://img.shields.io/github/v/release/axetroy/chatgpt.svg)
+[![Build Status](https://github.com/axetroy/openai/workflows/ci/badge.svg)](https://github.com/axetroy/openai/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/axetroy/openai)](https://goreportcard.com/report/github.com/axetroy/openai)
+![Latest Version](https://img.shields.io/github/v/release/axetroy/openai.svg)
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
-![Repo Size](https://img.shields.io/github/repo-size/axetroy/chatgpt.svg)
+![Repo Size](https://img.shields.io/github/repo-size/axetroy/openai.svg)
 
 ## open.ai SDK
 
