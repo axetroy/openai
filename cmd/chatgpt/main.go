@@ -8,6 +8,7 @@ import (
 
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/axetroy/openai"
+	api_completions "github.com/axetroy/openai/apis/completions"
 	"github.com/gookit/color"
 	"github.com/pkg/errors"
 )
@@ -126,7 +127,7 @@ func run() error {
 			temperature := 0.6
 			maxTokens := 2048
 
-			err := client.CompletionsStream(openai.CompletionParams{
+			err := client.Completions.CreateCompletionsStream(api_completions.CompletionParams{
 				Prompt:      &question,
 				Model:       model,
 				Temperature: &temperature,

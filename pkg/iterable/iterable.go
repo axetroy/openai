@@ -1,4 +1,4 @@
-package openai
+package iterable
 
 type Iterable[T any] struct {
 	next func() (T, bool, error)

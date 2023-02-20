@@ -1,4 +1,4 @@
-package openai
+package event_source
 
 import (
 	"bufio"
@@ -7,11 +7,12 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/axetroy/openai/pkg/iterable"
 	"github.com/pkg/errors"
 )
 
 type EventSource[T any] struct {
-	*Iterable[*T]
+	*iterable.Iterable[*T]
 	resp *http.Response
 }
 
@@ -38,7 +39,7 @@ func NewEventSource[T any](url string, method string, headers http.Header, body 
 
 	reader := bufio.NewReader(resp.Body)
 
-	iterator := NewIterable(func() (*T, bool, error) {
+	iterator := iterable.NewIterable(func() (*T, bool, error) {
 		line, err := reader.ReadBytes('\n')
 
 		if err != nil {

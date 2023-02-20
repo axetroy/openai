@@ -1,4 +1,4 @@
-package openai
+package edits
 
 import (
 	"bytes"
@@ -7,28 +7,11 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/axetroy/openai/pkg/event_source"
 	"github.com/pkg/errors"
 )
 
-type EditResponse struct {
-	Object  string       `json:"object"`
-	Created int          `json:"created"`
-	Choices []EditChoice `json:"choices"`
-	Usage   EditUsage    `json:"usage"`
-}
-
-type EditUsage struct {
-	PromptTokens     int `json:"prompt_tokens"`
-	CompletionTokens int `json:"completion_tokens"`
-	TotalTokens      int `json:"total_tokens"`
-}
-
-type EditChoice struct {
-	Text  string `json:"text"`
-	Index int    `json:"index"`
-}
-
-type EditParams struct {
+type CreateEditParams struct {
 	Model       string   `json:"model"`
 	Input       *string  `json:"input,omitempty"`
 	Instruction string   `json:"instruction"`
@@ -37,9 +20,9 @@ type EditParams struct {
 	TopP        *float64 `json:"top_p,omitempty"`
 }
 
-// docs: https://platform.openai.com/docs/api-reference/edits
-func (c *Client) Edits(params EditParams) (*EditResponse, error) {
-	url := fmt.Sprintf("%s/v1/edits", API_DOMAIN)
+// docs: https://platform.openai.com/docs/api-reference/edits/create
+func (this *Edits) CreateEdit(params CreateEditParams) (*EditResponse, error) {
+	url := fmt.Sprintf("%s/v1/edits", this.domain)
 
 	jsonBytes, err := json.Marshal(params)
 
@@ -47,8 +30,8 @@ func (c *Client) Edits(params EditParams) (*EditResponse, error) {
 		return nil, errors.WithStack(err)
 	}
 
-	source, err := NewEventSource[any](url, "POST", http.Header{
-		"Authorization": []string{"Bearer " + c.apiKey},
+	source, err := event_source.NewEventSource[any](url, "POST", http.Header{
+		"Authorization": []string{"Bearer " + this.apiKey},
 		"Content-Type":  []string{"application/json"},
 	}, bytes.NewBuffer(jsonBytes))
 
