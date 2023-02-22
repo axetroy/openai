@@ -11,11 +11,11 @@ import (
 )
 
 // docs: https://platform.openai.com/docs/api-reference/files/upload
-func (f *Files) UploadFile(file io.Reader) (*File, error) {
-	url := fmt.Sprintf("%s/v1/files", f.domain)
+func (this *Files) UploadFile(file io.Reader) (*File, error) {
+	url := fmt.Sprintf("%s/v1/files", this.domain)
 
 	source, err := event_source.NewEventSource[any](url, "POST", http.Header{
-		"Authorization": []string{"Bearer " + f.apiKey},
+		"Authorization": []string{"Bearer " + this.apiKey},
 	}, file)
 
 	if err != nil {

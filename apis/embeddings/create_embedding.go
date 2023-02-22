@@ -18,8 +18,8 @@ type CreateEmbeddingParams struct {
 }
 
 // docs: https://platform.openai.com/docs/api-reference/embeddings/create
-func (c *Embeddings) CreateEmbedding(params CreateEmbeddingParams) (*EmbeddingResponse, error) {
-	url := fmt.Sprintf("%s/v1/embeddings", c.domain)
+func (this *Embeddings) CreateEmbedding(params CreateEmbeddingParams) (*EmbeddingResponse, error) {
+	url := fmt.Sprintf("%s/v1/embeddings", this.domain)
 
 	body, err := json.Marshal(params)
 
@@ -28,7 +28,7 @@ func (c *Embeddings) CreateEmbedding(params CreateEmbeddingParams) (*EmbeddingRe
 	}
 
 	source, err := event_source.NewEventSource[any](url, "POST", http.Header{
-		"Authorization": []string{"Bearer " + c.apiKey},
+		"Authorization": []string{"Bearer " + this.apiKey},
 		"Content-Type":  []string{"application/json"},
 	}, bytes.NewBuffer(body))
 

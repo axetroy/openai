@@ -12,8 +12,8 @@ import (
 )
 
 // docs: https://platform.openai.com/docs/api-reference/completions
-func (c *Completions) CreateCompletionsStream(params CompletionParams, writer io.Writer) error {
-	url := fmt.Sprintf("%s/v1/completions", c.domain)
+func (this *Completions) CreateCompletionsStream(params CompletionParams, writer io.Writer) error {
+	url := fmt.Sprintf("%s/v1/completions", this.domain)
 
 	apiParams := CompletionApiParams{
 		CompletionParams: params,
@@ -27,7 +27,7 @@ func (c *Completions) CreateCompletionsStream(params CompletionParams, writer io
 	}
 
 	source, err := event_source.NewEventSource[CompletionResponse](url, "POST", http.Header{
-		"Authorization": []string{"Bearer " + c.apiKey},
+		"Authorization": []string{"Bearer " + this.apiKey},
 		"Content-Type":  []string{"application/json"},
 	}, bytes.NewBuffer(body))
 
@@ -61,10 +61,10 @@ func (c *Completions) CreateCompletionsStream(params CompletionParams, writer io
 }
 
 // docs: https://platform.openai.com/docs/api-reference/completions
-func (c *Completions) CreateCompletions(config CompletionParams) ([]byte, error) {
+func (this *Completions) CreateCompletions(config CompletionParams) ([]byte, error) {
 	var writer bytes.Buffer
 
-	if err := c.CreateCompletionsStream(config, &writer); err != nil {
+	if err := this.CreateCompletionsStream(config, &writer); err != nil {
 		return nil, errors.WithStack(err)
 	}
 

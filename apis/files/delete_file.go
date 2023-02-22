@@ -11,11 +11,11 @@ import (
 )
 
 // docs: https://platform.openai.com/docs/api-reference/files/delete
-func (f *Files) DeleteFile(fileId string) (*FileDeleteResponse, error) {
-	url := fmt.Sprintf("%s/v1/files/%s", f.domain, fileId)
+func (this *Files) DeleteFile(fileId string) (*FileDeleteResponse, error) {
+	url := fmt.Sprintf("%s/v1/files/%s", this.domain, fileId)
 
 	source, err := event_source.NewEventSource[any](url, "DELETE", http.Header{
-		"Authorization": []string{"Bearer " + f.apiKey},
+		"Authorization": []string{"Bearer " + this.apiKey},
 	}, nil)
 
 	if err != nil {

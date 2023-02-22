@@ -10,11 +10,11 @@ import (
 )
 
 // docs: https://platform.openai.com/docs/api-reference/files/retrieve-content
-func (f *Files) RetrieveContent(fileId string) ([]byte, error) {
-	url := fmt.Sprintf("%s/v1/files/%s/content", f.domain, fileId)
+func (this *Files) RetrieveContent(fileId string) ([]byte, error) {
+	url := fmt.Sprintf("%s/v1/files/%s/content", this.domain, fileId)
 
 	source, err := event_source.NewEventSource[any](url, "GET", http.Header{
-		"Authorization": []string{"Bearer " + f.apiKey},
+		"Authorization": []string{"Bearer " + this.apiKey},
 	}, nil)
 
 	if err != nil {
